@@ -14,8 +14,8 @@ public class EditItemActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_item);
 		String text = getIntent().getStringExtra("text");
-		int pos = getIntent().getIntExtra("pos");
-		int code = getIntent().getIntExtra("code");
+		int pos = getIntent().getExtras().getInt("pos", 0);
+		int code = getIntent().getExtras().getInt("code", 0);
 		EditText etTextItem = (EditText) findViewById(R.id.etItem);
 		etTextItem.requestFocus();
 		etTextItem.setText(text);

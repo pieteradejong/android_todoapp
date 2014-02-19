@@ -54,7 +54,8 @@ public class ToDoActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View item, int pos, long id){
 				Intent i = new Intent(ToDoActivity.this, EditItemActivity.class);
-				i.putExtra("text", item.getText().toString());
+				EditText text = (EditText) item;
+				i.putExtra("text", text.getText().toString());
 				i.putExtra("pos", pos);
                 startActivityForResult(i, REQUEST_CODE);
 			}
@@ -71,7 +72,7 @@ public class ToDoActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	  if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
     	     String item = data.getExtras().getString("item");
-    	     int pos = data.getExtras().getIntExtra("pos");
+    	     int pos = data.getExtras().getInt("pos", 0);
     	     // insert text at correct position
     	     todoAdapter.insert(item, pos);	
     	     // notify adapter of change

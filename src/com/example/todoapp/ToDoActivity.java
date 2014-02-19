@@ -78,17 +78,10 @@ public class ToDoActivity extends Activity {
     	  if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
     	     String text = data.getExtras().getString("text");
     	     int pos = data.getExtras().getInt("pos", 0);
-    	     // fixme: items are being added, not replaced
-    	     todoAdapter.insert(text, pos);
+    	     // replace item on the ArrayList, then notify Adapter that data has changed
+    	     todoItems.set(pos, text);
+    	     todoAdapter.notifyDataSetChanged();
     	     Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-    	     // potential solution to replace text at correct position:
-             // 1. get current object at position:
-    	     // ListItem item = todoAdapter.getItem(pos);
-    	     // 2. remove object
-    	     // 3. insert new object with edited text at this position
-    	     	
-    	     // notify adapter of change
-			 todoAdapter.notifyDataSetChanged();
     	     // persist changes to todo.txt
 			 writeItems();
     	  }

@@ -53,12 +53,10 @@ public class ToDoActivity extends Activity {
 		lvItems.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View item, int pos, long id){
-                Intent i = new Intent(ToDoActivity.this, EditItemActivity.class);
+				Intent i = new Intent(ToDoActivity.this, EditItemActivity.class);
+				i.putExtra("text", item.getText().toString());
+				i.putExtra("pos", pos);
                 startActivityForResult(i, REQUEST_CODE);
-				//todoItems.remove(pos);
-//				todoAdapter.notifyDataSetChanged();
-//				writeItems();
-//				return true;
 			}
 		});
 	}

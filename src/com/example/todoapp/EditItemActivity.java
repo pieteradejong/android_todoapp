@@ -13,13 +13,17 @@ public class EditItemActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_item);
+		String text = getIntent().getStringExtra("text");
+		int pos = getIntent().getIntExtra("pos");
+		int code = getIntent().getIntExtra("code");
+		EditText etTextItem = (EditText) findViewById(R.id.etItem);
+		etTextItem.setText(text);
 	}
 	
-	@Override
 	public void applyChanges(View v) {
 		EditText etItem = (EditText) findViewById(R.id.etItem);
 		Intent data = new Intent();
-		data.putExtra("item", etItem.getText().toString());
+		data.putExtra("text", etItem.getText().toString());
 		setResult(RESULT_OK, data);
 		finish();
 	}

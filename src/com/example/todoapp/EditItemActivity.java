@@ -9,13 +9,17 @@ import android.widget.EditText;
 
 public class EditItemActivity extends Activity {
 
+	private int pos;
+	private int code;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_item);
 		String text = getIntent().getStringExtra("text");
-		int pos = getIntent().getExtras().getInt("pos", 0);
-		int code = getIntent().getExtras().getInt("code", 0);
+		pos = getIntent().getExtras().getInt("pos", 0);
+//		code = getIntent().getExtras().getInt("code", 0);
+		code = getIntent().getIntExtra("code", 0);
 		EditText etTextItem = (EditText) findViewById(R.id.etItem);
 		etTextItem.requestFocus();
 		etTextItem.setText(text);

@@ -17,6 +17,9 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+//import android.widget.TextView;
 
 
 public class ToDoActivity extends Activity {
@@ -54,9 +57,11 @@ public class ToDoActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View item, int pos, long id){
 				Intent i = new Intent(ToDoActivity.this, EditItemActivity.class);
-				EditText text = (EditText) item;
-				i.putExtra("text", text.getText().toString());
+//				EditText text = (EditText) item;
+//				i.putExtra("text", adapter.getItem(pos).toString());
 				i.putExtra("pos", pos);
+				Toast.makeText(getApplicationContext(), ((TextView) item).getText(),
+				          Toast.LENGTH_SHORT).show();
                 startActivityForResult(i, REQUEST_CODE);
 			}
 		});

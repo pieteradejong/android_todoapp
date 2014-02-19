@@ -57,8 +57,7 @@ public class ToDoActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View item, int pos, long id){
 				Intent i = new Intent(ToDoActivity.this, EditItemActivity.class);
-//				EditText text = (EditText) item;
-//				i.putExtra("text", adapter.getItem(pos).toString());
+				i.putExtra("text", ((TextView) item).getText());
 				i.putExtra("pos", pos);
 				Toast.makeText(getApplicationContext(), ((TextView) item).getText(),
 				          Toast.LENGTH_SHORT).show();
@@ -74,12 +73,20 @@ public class ToDoActivity extends Activity {
     	writeItems();
     }
     
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	  if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-    	     String item = data.getExtras().getString("item");
+    	     String text = data.getExtras().getString("text");
     	     int pos = data.getExtras().getInt("pos", 0);
-    	     // insert text at correct position
-    	     todoAdapter.insert(item, pos);	
+    	     // fixme: items are being added, not replaced
+    	     todoAdapter.insert(text, pos);
+    	     Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    	     // potential solution to replace text at correct position:
+             // 1. get current object at position:
+    	     // ListItem item = todoAdapter.getItem(pos);
+    	     // 2. remove object
+    	     // 3. insert new object with edited text at this position
+    	     	
     	     // notify adapter of change
 			 todoAdapter.notifyDataSetChanged();
     	     // persist changes to todo.txt

@@ -18,11 +18,13 @@ public class EditItemActivity extends Activity {
 		setContentView(R.layout.activity_edit_item);
 		String text = getIntent().getStringExtra("text");
 		pos = getIntent().getExtras().getInt("pos", 0);
-//		code = getIntent().getExtras().getInt("code", 0);
 		code = getIntent().getIntExtra("code", 0);
 		EditText etTextItem = (EditText) findViewById(R.id.etItem);
+		// ensure focus on text field
 		etTextItem.requestFocus();
+		// set text field value
 		etTextItem.setText(text);
+		// cursor after last character:
 		etTextItem.setSelection(etTextItem.getText().length());
 	}
 	
@@ -30,7 +32,6 @@ public class EditItemActivity extends Activity {
 		EditText etItem = (EditText) findViewById(R.id.etItem);
 		Intent data = new Intent();
 		data.putExtra("text", etItem.getText().toString());
-		// is pos visible to this scope?
 		data.putExtra("pos", pos);
 		setResult(RESULT_OK, data);
 		finish();

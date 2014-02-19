@@ -17,13 +17,17 @@ public class EditItemActivity extends Activity {
 		int pos = getIntent().getIntExtra("pos");
 		int code = getIntent().getIntExtra("code");
 		EditText etTextItem = (EditText) findViewById(R.id.etItem);
+		etTextItem.requestFocus();
 		etTextItem.setText(text);
+		etTextItem.setSelection(etTextItem.getText().length());
 	}
 	
 	public void applyChanges(View v) {
 		EditText etItem = (EditText) findViewById(R.id.etItem);
 		Intent data = new Intent();
 		data.putExtra("text", etItem.getText().toString());
+		// is pos visible to this scope?
+		data.putExtra("pos", pos);
 		setResult(RESULT_OK, data);
 		finish();
 	}

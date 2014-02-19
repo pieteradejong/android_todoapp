@@ -70,9 +70,14 @@ public class ToDoActivity extends Activity {
     
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	  if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-    	     String name = data.getExtras().getString("item");
-//    	     Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
-    	     
+    	     String item = data.getExtras().getString("item");
+    	     int pos = data.getExtras().getIntExtra("pos");
+    	     // insert text at correct position
+    	     todoAdapter.insert(item, pos);	
+    	     // notify adapter of change
+			 todoAdapter.notifyDataSetChanged();
+    	     // persist changes to todo.txt
+			 writeItems();
     	  }
     	} 
 

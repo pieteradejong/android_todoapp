@@ -24,10 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/etItem"
-        android:onClick="applyChanges"
         android:layout_marginRight="42dp"
         android:layout_marginTop="18dp"
-        android:text="@string/edit_apply_button" />
+        android:onClick="applyChanges"
+        android:text="@string/save_button" />
 
     <EditText
         android:id="@+id/etItem"
